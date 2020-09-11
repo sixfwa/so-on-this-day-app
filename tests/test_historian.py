@@ -2,8 +2,8 @@ import unittest
 import requests
 from bs4 import BeautifulSoup
 
-from scraper.utils import get_month_and_day as _get_month_and_day
-from scraper.historian import Historian
+from historian.utils import get_month_and_day as _get_month_and_day
+from historian.historian import Historian
 
 
 class HistorianTest(unittest.TestCase):
