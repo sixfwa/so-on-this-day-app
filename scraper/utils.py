@@ -11,3 +11,7 @@ def get_this_day():
     day = datetime.today()
 
     return day.day
+
+
+def get_month_and_day():
+    return f"{get_this_month()}_{get_this_day()}"
