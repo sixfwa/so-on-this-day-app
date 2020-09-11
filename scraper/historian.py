@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup, element
 
-from utils import get_month_and_day as _get_month_and_day
+from .utils import get_month_and_day as _get_month_and_day
 
 
 class Historian:
@@ -57,9 +57,3 @@ class Historian:
             clean_events.append(clean_event)
 
         return clean_events
-
-
-historian = Historian()
-
-for item in historian._clean_events():
-    print(item)
