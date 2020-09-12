@@ -4,7 +4,7 @@ from random import randint
 
 from .models import Event, DateCollect
 
-from historian.utils import get_full_date
+from historian.utils import get_full_date, get_month_and_day
 from historian.historian import Historian
 
 historian = Historian()
@@ -34,6 +34,19 @@ def get_random_event():
     return events[select]
 
 
+def split_year_event(collection):
+    events = list()
+    for item in collection:
+        text = item.event.split(" ")
+        year = text[0]
+        event = text[2:]
+        event = " ".join(event)
+        year_events = list()
+        year_event = {"year": year, "event": event}
+        events.append(year_event)
+    return events
+
+
 def index(request):
     create_date()
     store_events()
@@ -48,4 +61,14 @@ def index(request):
 
 
 def table(request, day):
+    if day != get_month_and_day():
+        return render(request, "pages/error.html")
+    today = datetime.today()
+    collection = Event.objects.filter(date=today)
+
+    events = split_year_event(collection)
+    print(events)
+    context = {
+        "events": events,
+    }
     return render(request, "pages/today.html", context)

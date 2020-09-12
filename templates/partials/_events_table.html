@@ -1,0 +1,16 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 25%;%">Year</th>
+      <th scope="col">Event</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td>{{ event.year }}</td>
+      <td>{{ event.event }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
